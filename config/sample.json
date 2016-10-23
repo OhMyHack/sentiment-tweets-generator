@@ -1,0 +1,6 @@
+{
+  "twitter": {
+    "key": "twitter_api_key",
+    "secret": "twitter_api_secret"
+  }
+}

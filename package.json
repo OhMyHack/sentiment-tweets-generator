@@ -1,0 +1,29 @@
+{
+  "name": "sentiment-tweets-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "async": "^2.1.2",
+    "aws-sdk": "^2.6.11",
+    "sentiment": "^2.1.0",
+    "superagent": "^2.3.0"
+  },
+  "devDependencies": {
+    "serverless-run-function-plugin": "0.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OhMyHack/sentiment-tweets-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OhMyHack/sentiment-tweets-generator/issues"
+  },
+  "homepage": "https://github.com/OhMyHack/sentiment-tweets-generator#readme"
+}
