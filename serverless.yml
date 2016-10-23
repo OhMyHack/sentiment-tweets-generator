@@ -16,10 +16,8 @@ service: sentiment-tweets-generator
 provider:
   name: aws
   runtime: nodejs4.3
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: production
+  region: ap-southeast-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -45,6 +43,7 @@ package:
 functions:
   hello:
     handler: handler.hello
+    memorySize: 128
 
 plugins:
   - serverless-run-function-plugin
