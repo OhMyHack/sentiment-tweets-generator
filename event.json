@@ -1,5 +1,4 @@
 {
-  "key3": "value3",
-  "key2": "value2",
-  "key1": "value1"
+  "targetPlaceID": "23424901",
+  "periodSeconds": 60
 }
