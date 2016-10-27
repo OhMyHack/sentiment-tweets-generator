@@ -2,6 +2,7 @@
 
 ## Prerequisites
 1. [Serverless](https://serverless.com/framework/docs/guide/installing-serverless/#installing-serverles)
+2. node v4.3
 
 ## How to deploy
 ```bash
