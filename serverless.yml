@@ -18,21 +18,16 @@ provider:
   runtime: nodejs4.3
   stage: production
   region: ap-southeast-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - Ref: TweetsBucket
+            - "/*"
 
 # you can add packaging information here
 package:
@@ -44,6 +39,7 @@ functions:
   hello:
     handler: handler.hello
     memorySize: 128
+    timeout: 300
 
 plugins:
   - serverless-run-function-plugin
@@ -60,14 +56,26 @@ plugins:
 #      - sns: greeter-topic
 #      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  Resources:
+    TweetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        BucketName: "ohmyhack-${self:provider.stage}-${self:service}"
+    TweetsBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: TweetsBucket
+        PolicyDocument:
+          Statement:
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:aws:s3:::"
+                  - Ref: TweetsBucket
+                  - "/*"
