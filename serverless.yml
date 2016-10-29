@@ -40,21 +40,11 @@ functions:
     handler: handler.hello
     memorySize: 128
     timeout: 300
+    events:
+      - schedule: rate(1 minute)
 
 plugins:
   - serverless-run-function-plugin
-
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
 
 resources:
   Resources:
